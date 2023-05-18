@@ -1,7 +1,7 @@
 // import HomePage from '../pages/HomePage';
 import { Route, Routes } from 'react-router-dom';
 // import TweetsPage from 'pages/TweetsPage';
-import Home from 'pages/Home';
+import Home from 'pages/Home/Home';
 // import { lazy } from 'react';
 // const HomePage = lazy(() => import("./pages/HomePage"));
 

@@ -7,8 +7,6 @@ export const getUsers =async () => {
     
     try {
         const respons = await axios.get("/users"); 
-        console.log("🚀 ~ getUsers ~ respons.data:", respons.data);
-       
         return respons.data
     } catch (error) {
         

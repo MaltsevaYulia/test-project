@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { getUsers } from 'servises/getUsers';
 import { updateUser } from 'servises/updateUser';
 import ReactPaginate from 'react-paginate';
-import { UserList } from '../components/UserList.jsx/UserList';
+import { UsersList } from 'components/UsersList/UsersList';
+import css from '../Home/Home.module.css';
 
-const HomePage = () => {
+const Home = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -17,11 +18,22 @@ const HomePage = () => {
       });
   }, []);
 
+  useEffect(() => {
+    
+  
+    
+  }, [])
+  
+
   const handleFollow = user => {
-    updateUser(user.id, user);
     setUsers(prevState =>
       prevState.map(el => {
         if (el.id === user.id) {
+          updateUser(user.id, {
+            ...el,
+            followers: !el.isFollow ? el.followers + 1 : el.followers - 1,
+            isFollow: !el.isFollow,
+          });
           return {
             ...el,
             followers: !el.isFollow ? el.followers + 1 : el.followers - 1,
@@ -30,14 +42,20 @@ const HomePage = () => {
         } else return el;
       })
     );
+    
   };
+
   //pagination
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 3;
-  const endOffset = itemOffset + itemsPerPage;
-  const currentItems = users.slice(itemOffset, endOffset);
-  const pageCount = Math.ceil(users.length / itemsPerPage);
 
+  useEffect(() => {
+    const endOffset = itemOffset + itemsPerPage;
+    setCurrentItems(users.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(users.length / itemsPerPage));
+  }, [itemOffset, users]);
   const handlePageClick = event => {
     const newOffset = (event.selected * itemsPerPage) % users.length;
     setItemOffset(newOffset);
@@ -45,7 +63,7 @@ const HomePage = () => {
 
   return (
     <>
-      <UserList user={currentItems} handleFollow={handleFollow} />
+      <UsersList users={currentItems} handleFollow={handleFollow} />
       <ReactPaginate
         breakLabel="..."
         nextLabel="next >"
@@ -54,37 +72,10 @@ const HomePage = () => {
         pageCount={pageCount}
         previousLabel="< previous"
         renderOnZeroPageCount={null}
+        className={css.pagination}
       />
     </>
   );
-
-  return (
-    <ul>
-      {users.length > 0 &&
-        users.map(({ id, avatar, user, tweets, followers, isFollow }) => (
-          <li key={id}>
-            <h2>{user}</h2>
-            <img src={avatar} alt={user} />
-            <p>{tweets}</p>
-            <p>{followers}</p>
-            <button
-              type="button"
-              onClick={() =>
-                handleFollow({
-                  id,
-                  avatar,
-                  user,
-                  tweets,
-                  followers,
-                  isFollow: !isFollow,
-                })
-              }
-            >
-              {isFollow ? 'Following' : 'Follow'}
-            </button>
-          </li>
-        ))}
-    </ul>
-  );
 };
-export default HomePage;
+
+export default Home;
