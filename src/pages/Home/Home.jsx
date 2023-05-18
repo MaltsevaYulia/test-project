@@ -62,7 +62,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div className="container">
       <UsersList users={currentItems} handleFollow={handleFollow} />
       <ReactPaginate
         breakLabel="..."
@@ -73,8 +73,12 @@ const Home = () => {
         previousLabel="< previous"
         renderOnZeroPageCount={null}
         className={css.pagination}
+        pageLinkClassName={css.page}
+        previousLinkClassName={css.page}
+        nextLinkClassName={css.page}
+        activeLinkClassName={css.active}
       />
-    </>
+    </div>
   );
 };
 

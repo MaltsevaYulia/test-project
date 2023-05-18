@@ -1,6 +1,25 @@
-.pagination{
-    list-style: none;display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
+.container {
+  padding: 0 16px;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.page {
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+.page:hover {
+  background-color:#5cd3a8;
+}
+.active {
+  background-color: #5cd3a8;
 }
