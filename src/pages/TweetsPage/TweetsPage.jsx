@@ -8,6 +8,8 @@ import { MdKeyboardBackspace } from 'react-icons/md';
 import { Link, useLocation } from 'react-router-dom';
 import Filter from 'components/Filter/Filter';
 import { getVisibleUsers } from 'servises/getVisibleUsers';
+import  Dropdown  from '../../components/Dropdawn/Dropdawn';
+
 
 const TweetsPage = () => {
   const [users, setUsers] = useState([]);
@@ -18,11 +20,6 @@ const TweetsPage = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 3;
-
-  const handleFilterChange = e => {
-    const filter = e.target.name;
-    setfilterStatus(filter);
-  };
 
   useEffect(() => {
     getUsers()
@@ -54,13 +51,22 @@ const TweetsPage = () => {
   };
 
   useEffect(() => {
+    const visibleUsers = getVisibleUsers(users, filterStatus);
     const endOffset = itemOffset + itemsPerPage;
-    setCurrentItems(users.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(users.length / itemsPerPage));
-  }, [itemOffset, users]);
+    setCurrentItems(visibleUsers.slice(itemOffset, endOffset));
+    setPageCount(Math.ceil(visibleUsers.length / itemsPerPage));
+  }, [filterStatus, itemOffset, users]);
+
   const handlePageClick = event => {
-    const newOffset = (event.selected * itemsPerPage) % users.length;
+    const newOffset =
+      (event.selected * itemsPerPage) %
+      getVisibleUsers(users, filterStatus).length;
     setItemOffset(newOffset);
+  };
+
+  const handleFilterChange = e => {
+    const filter = e.target.name;
+    setfilterStatus(filter);
   };
 
   return (
@@ -73,15 +79,17 @@ const TweetsPage = () => {
           </div>
         </Link>
       </div>
+      
+      {/* <Dropdown
+        // handleFilterChange={handleFilterChange}
+        filterStatus={filterStatus}
+      /> */}
       <Filter
         handleFilterChange={handleFilterChange}
         filterStatus={filterStatus}
       />
       <div className="container">
-        <UsersList
-          users={getVisibleUsers(currentItems, filterStatus)}
-          handleFollow={handleFollow}
-        />
+        <UsersList users={currentItems} handleFollow={handleFollow} />
         <ReactPaginate
           breakLabel="..."
           nextLabel=" >"
