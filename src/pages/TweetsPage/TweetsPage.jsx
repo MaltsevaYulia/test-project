@@ -8,8 +8,6 @@ import { MdKeyboardBackspace } from 'react-icons/md';
 import { Link, useLocation } from 'react-router-dom';
 import Filter from 'components/Filter/Filter';
 import { getVisibleUsers } from 'servises/getVisibleUsers';
-import  Dropdown  from '../../components/Dropdawn/Dropdawn';
-
 
 const TweetsPage = () => {
   const [users, setUsers] = useState([]);

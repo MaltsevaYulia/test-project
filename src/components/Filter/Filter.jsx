@@ -17,9 +17,8 @@ const Filter = ({ handleFilterChange, filterStatus }) => {
 
   return (
     <div className={css.filters}>
-      {/* <GrFilter /> */}
-      {/* <div className={css.filterWrap}> */}
-        <p>Filter</p>
+      
+        <p className={css.title}>Filter</p><GrFilter />
         <button
           type="button"
           className={`${css.filterBtn} ${css.activeFilter}`}
@@ -69,7 +68,6 @@ const Filter = ({ handleFilterChange, filterStatus }) => {
             </button>
           </>
         )}
-      {/* </div> */}
     </div>
   );
 };
