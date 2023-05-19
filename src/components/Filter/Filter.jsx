@@ -1,13 +1,17 @@
 import { GrFilter } from 'react-icons/gr';
 import css from '../Filter/Filter.module.css';
 
-const Filter = ({ handleFilterChange }) => {
+const Filter = ({ handleFilterChange, filterStatus }) => {
   return (
     <div className={css.filters}>
       <GrFilter />
       <button
         type="button"
-        className={css.filterBtn}
+        className={
+          filterStatus === 'all'
+            ? `${css.filterBtn} ${css.activeFilter}`
+            : `${css.filterBtn}`
+        }
         name="all"
         onClick={handleFilterChange}
       >
@@ -15,7 +19,11 @@ const Filter = ({ handleFilterChange }) => {
       </button>
       <button
         type="button"
-        className={css.filterBtn}
+        className={
+          filterStatus === 'follow'
+            ? `${css.filterBtn} ${css.activeFilter}`
+            : `${css.filterBtn}`
+        }
         name="follow"
         onClick={handleFilterChange}
       >
@@ -23,7 +31,11 @@ const Filter = ({ handleFilterChange }) => {
       </button>
       <button
         type="button"
-        className={css.filterBtn}
+        className={
+          filterStatus === 'followings'
+            ? `${css.filterBtn} ${css.activeFilter}`
+            : `${css.filterBtn}`
+        }
         name="followings"
         onClick={handleFilterChange}
       >

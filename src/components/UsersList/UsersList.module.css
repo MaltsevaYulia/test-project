@@ -33,21 +33,6 @@
 }
 
 .item::before {
-  /* content: '';
-  position: absolute;
-  background-image: url(../../assets/imeges/logo.png),
-    url(../../assets/imeges/picture.png);
-  width: 76px;
-  height: 22px; */
-  /* top: 20px;
-  left: 20px; */
-  /* background-repeat: no-repeat;
-  background-size: 76px 22px, 308px 168px;
-  background-position: top 20px left 20px, top 36px;
-  width: 308px;
-  height: 168px; */
-}
-.item::before {
   content: '';
   position: absolute;
   background-image: url(../../assets/imeges/logo.png);

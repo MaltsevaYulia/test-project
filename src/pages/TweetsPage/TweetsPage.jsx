@@ -5,20 +5,24 @@ import ReactPaginate from 'react-paginate';
 import { UsersList } from 'components/UsersList/UsersList';
 import css from '../TweetsPage/TweetsPage.module.css';
 import { MdKeyboardBackspace } from 'react-icons/md';
-// import { GrFilter } from 'react-icons/gr';
 import { Link, useLocation } from 'react-router-dom';
 import Filter from 'components/Filter/Filter';
+import { getVisibleUsers } from 'servises/getVisibleUsers';
 
 const TweetsPage = () => {
   const [users, setUsers] = useState([]);
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
-  const [filterStatus, setfilterStatus] = useState('all')//
-  
-  const handelFilterClick = (e) => {
-  console.log("🚀 ~ handelFilerClick ~ e:", e)
-  }
-  
+  const [filterStatus, setfilterStatus] = useState('all'); //
+  const [currentItems, setCurrentItems] = useState([]);
+  const [pageCount, setPageCount] = useState(0);
+  const [itemOffset, setItemOffset] = useState(0);
+  const itemsPerPage = 3;
+
+  const handleFilterChange = e => {
+    const filter = e.target.name;
+    setfilterStatus(filter);
+  };
 
   useEffect(() => {
     getUsers()
@@ -49,12 +53,6 @@ const TweetsPage = () => {
     );
   };
 
-  //pagination
-  const [currentItems, setCurrentItems] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0);
-  const itemsPerPage = 3;
-
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(users.slice(itemOffset, endOffset));
@@ -74,16 +72,16 @@ const TweetsPage = () => {
             <span>Go back</span>
           </div>
         </Link>
-        <Filter handelFilterClick={handelFilterClick} />
-        {/* <div className={css.filters}>
-          <GrFilter/>
-          <button type='button' className={css.filterBtn}>show all</button>
-          <button type='button' className={css.filterBtn}>follow</button>
-          <button type='button' className={css.filterBtn}>followings </button>
-        </div> */}
       </div>
+      <Filter
+        handleFilterChange={handleFilterChange}
+        filterStatus={filterStatus}
+      />
       <div className="container">
-        <UsersList users={currentItems} handleFollow={handleFollow} />
+        <UsersList
+          users={getVisibleUsers(currentItems, filterStatus)}
+          handleFollow={handleFollow}
+        />
         <ReactPaginate
           breakLabel="..."
           nextLabel=" >"

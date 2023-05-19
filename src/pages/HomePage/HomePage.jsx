@@ -1,16 +1,17 @@
 import css from '../HomePage/HomePage.module.css';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
-    return (
-      <div className={css.container}>
-        {/* <img src={require('assets/imeges/wawe.jpg')} alt='wawe' /> */}
+  return (
+    <div className={css.container}>
+      <div className={css.wrapper}>
         <h1 className={css.title}>welcome to</h1>
         <Link className={css.btn} to="/tweets">
           Tweets
         </Link>
       </div>
-    );
-}
-export default HomePage
+    </div>
+  );
+};
+export default HomePage;
