@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  align-items: baseline;
+  /* justify-content: space-between; */
+  margin-bottom: 20px;
+}
+
+
+
+.container {
+  padding: 70px 16px;
+}
+
+.goBack {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 16px;
+  margin-bottom: 20px;
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+  width: 80px;
+}
+
+.goBack:hover {
+  background-color: #5cd3a8;
+}
+
+.pagination {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.page {
+  padding: 8px 15px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-weight: 400;
+}
+
+.page:hover {
+  background-color: #5cd3a8;
+}
+.active {
+  background-color: #5cd3a8;
+}

@@ -1,0 +1,22 @@
+.header{
+	position: fixed;
+	z-index: 100;
+	width: 100%;
+	background-color: #fff;
+	font-size: 12px;
+}
+
+.main{
+  padding-top: 70px;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 10px;
+  align-items: baseline;
+  font-size: 24px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
