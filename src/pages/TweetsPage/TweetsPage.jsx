@@ -77,11 +77,6 @@ const TweetsPage = () => {
           </div>
         </Link>
       </div>
-      
-      {/* <Dropdown
-        // handleFilterChange={handleFilterChange}
-        filterStatus={filterStatus}
-      /> */}
       <Filter
         handleFilterChange={handleFilterChange}
         filterStatus={filterStatus}

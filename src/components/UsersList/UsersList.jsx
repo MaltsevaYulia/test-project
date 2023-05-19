@@ -6,7 +6,6 @@ export const UsersList = ({ users, handleFollow }) => {
         {users.length > 0 &&
           users.map(({ id, avatar, user, tweets, followers, isFollow }) => (
             <li key={id} className={css.item}>
-              {/* <div className={css.background}></div> */}
               <div className={css.avatarWrapp}>
                 <div className={css.before}></div>
                 <div className={css.after}>
