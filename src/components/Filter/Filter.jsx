@@ -17,7 +17,6 @@ const Filter = ({ handleFilterChange, filterStatus }) => {
 
   return (
     <div className={css.filters}>
-      
         <p className={css.title}>Filter</p><GrFilter />
         <button
           type="button"
