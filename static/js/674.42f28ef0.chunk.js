@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunktest_project=self.webpackChunktest_project||[]).push([[674],{674:function(e,t,s){s.r(t),s.d(t,{default:function(){return o}});var a="HomePage_container__uNu-e",c="HomePage_wrapper__fbr7T",r="HomePage_title__UFLA3",n="HomePage_btn__fx-yV",_=s(87),l=s(184),o=function(){return(0,l.jsx)("div",{className:a,children:(0,l.jsxs)("div",{className:c,children:[(0,l.jsx)("h1",{className:r,children:"welcome to"}),(0,l.jsx)(_.rU,{className:n,to:"/tweets",children:"Tweets"})]})})}}}]);
+//# sourceMappingURL=674.42f28ef0.chunk.js.map
